@@ -34,9 +34,9 @@ Task Manager is a secure, highly visual, fully decoupled 3-column Kanban applica
 ## 🔗 Live Deployments
 
 * **Frontend Environment (Vercel):** [https://task-manager-sigma-seven-22.vercel.app](https://task-manager-sigma-seven-22.vercel.app)
-* **Backend API Node (Render):** [https://taskmanager-mlam.onrender.com](https://taskmanager-mlam.onrender.com/api)
+* **Backend API Node (Render):** [https://taskmanager-mlam.onrender.com](https://taskmanager-mlam.onrender.com)
 
-## 🧠 Technical Decisions & Tradeoffs
+##  Technical Decisions & Tradeoffs
 
 ### 1. Component Extraction & DRY Pattern
 During layout implementation, static presentation details on the authentication screens were abstracted into a reusable `<AuthSidebar />` component. This keeps the codebase DRY, separates styling concerns from dynamic state layers, and ensures identical branding visuals between routing endpoints.
