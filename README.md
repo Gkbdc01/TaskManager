@@ -27,9 +27,29 @@ Task Manager is a secure, highly visual, fully decoupled 3-column Kanban applica
 * **Runtime Layer**: Node.js & Express.js
 * **Database Target**: MongoDB Atlas (Cloud Cluster Layer)
 * **Cryptographic Layer**: Bcrypt.js (password hashing) & JSON Web Tokens (session signing)
+* **CORS:** Strictly configured cross-origin policies locking down requests to the Vercel production domain.
 
 ---
 
+## 🔗 Live Deployments
+
+* **Frontend Environment (Vercel):** [https://task-manager-sigma-seven-22.vercel.app](https://task-manager-sigma-seven-22.vercel.app)
+* **Backend API Node (Render):** [https://taskmanager-mlam.onrender.com](https://taskmanager-mlam.onrender.com/api)
+
+## 🧠 Technical Decisions & Tradeoffs
+
+### 1. Component Extraction & DRY Pattern
+During layout implementation, static presentation details on the authentication screens were abstracted into a reusable `<AuthSidebar />` component. This keeps the codebase DRY, separates styling concerns from dynamic state layers, and ensures identical branding visuals between routing endpoints.
+
+### 2. Tab-Scoped Stateless Sessions (Security Tradeoff)
+* **Tradeoff:** Tokens are persisted using browser `sessionStorage` rather than persistent `localStorage` or HttpOnly cookies.
+* **Impact:** State parameters clear automatically the absolute second a user closes their tab (mitigating stale session exploits). Users must re-authenticate on every unique window session, keeping the security footprint lightweight without introducing heavy cookie configuration overhead.
+
+### 3. Free-Tier Cold Starts (Infrastructural Tradeoff)
+* **Tradeoff:** The backend node is deployed on Render's free hobby tier.
+* **Impact:** Containers spin down automatically into low-power states after 15 minutes of inactivity. The first user request may cause a startup lag of ~50 seconds while the image boots. This tradeoff was accepted to prioritize zero-cost development, relying on UI loading spinners to preserve user feedback during cold starts.
+
+---
 ##  Repository Directory Structure
 
 ```text
